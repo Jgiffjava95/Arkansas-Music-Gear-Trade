@@ -1,0 +1,89 @@
+
+<div class="container" ng-show="visible" ng-init="getItems()">
+	<div class="card">
+		<div class="card-header">
+			<div class="col-12 text-center">
+				<h1>Current Postings</h1>
+			</div>
+
+			<div class="row">
+
+				<div class="col-lg-6 text-center">
+					<label for="filter">Filter by Keyword:</label><input type="text" class="form-control"
+						ng-model="filteritem.itemName" id="filter">
+				</div>
+
+				<div class="col-lg-6 text-center">
+					<label for="itemCat">Filter by Category:</label><select
+					class="form-control"
+						ng-options="value for value in itemCat"
+						ng-model="filteritem.itemCat">
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+
+				<div class="col-md-3" ng-repeat="item in item | filter : filteritem">
+					<div class="card">
+						<img src="data:image/png;base64,{{item.thumbnail}}"
+								class="card-img-top img-fluid">
+						<div class="card-block">
+							<h4 class="card-title">{{item.itemName}}</h4>
+							<p class="text-success">{{'$' + item.itemPrice}}</p>
+							<p class="card-text">
+								<small class="text-muted">{{item.location}}</small> <br>
+							</p>
+							
+						</div>
+						<button type="button" ng-click="selectItem(item)"
+							class="btn btn-danger">View Item</button>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<form name="viewItem">
+		<div class="card" ng-hide="visible">
+			<div class="card-header">
+				<button type="button" class="btn btn-danger"
+					ng-click="returnToPosts()">Back</button>
+			</div>
+
+			<div class="card-body">
+				<table class="table table-responsive">
+					<tr>
+						<td><h3>Item Name:</h3> <span ng-bind="itemToView.itemName"></span></td>
+					</tr>
+					<tr>
+						<td><h3>Category:</h3> <span ng-bind="itemToView.itemCat"></span></td>
+					</tr>
+					<tr>
+						<td><h3>Price $:</h3> <span ng-bind="itemToView.itemPrice"></span></td>
+					</tr>
+					<tr>
+						<td><h3>Description:</h3> <span ng-bind="itemToView.itemDesc"></span></td>
+					</tr>
+
+
+					<tr>
+						<td><h3>Location:</h3> <span ng-bind="itemToView.location"></span></td>
+					</tr>
+					<tr>
+						<td><h3>Contact Info:</h3> <span ng-bind="itemToView.contact"></span></td>
+					</tr>
+					<tr>
+						<td>
+						<img src="data:image/png;base64,{{itemToView.thumbnail}}"
+								class="card-img-top img-fluid">
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>

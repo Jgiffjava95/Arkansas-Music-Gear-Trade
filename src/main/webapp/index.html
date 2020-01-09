@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkansas Music Gear Trade</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+<script src="https://kit.fontawesome.com/1b6f078e3b.js"
+	crossorigin="anonymous"></script>
+
+<script src="js/ng-file-upload/ng-file-upload-shim.min.js"></script>
+<script src="js/ng-file-upload/ng-file-upload.min.js"></script>
+
+<script src="./js/music.js"></script>
+
+<link rel="stylesheet" href="music.css" type="text/css">
+
+</head>
+<body ng-app="musicapp" ng-controller='tradeController'
+	class="backgroundImage bg-secondary">
+
+	<header class="text-danger text-center background">Arkansas
+		Music Gear Trade</header>
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+			<div class="btn-group">
+				<a href="#!trade" class="btn btn-secondary fas fa-home" role="button"></a>
+				<button type="button"
+					class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+					data-toggle="dropdown"></button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#!addPost">Add Posting</a> <a
+						class="dropdown-item" href="#!yourPosts">Your Posts</a> <a
+						class="dropdown-item" href="#">Login/Register</a>
+				</div>
+			</div>
+	</nav>
+	<div class="container-fluid">
+		<div ng-view></div>
+	</div>
+</body>
+</html>

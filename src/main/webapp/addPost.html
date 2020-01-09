@@ -1,0 +1,114 @@
+<div class="container">
+	<form name="insertItemForm">
+		<div class="card">
+
+			<div class="card-header">
+				<h4>Create New Posting</h4>
+				<button type="button" ng-click="add()" class="btn btn-success">Create
+					Posting</button>
+
+				<a href="#!trade" class="btn btn-danger" role="button">Back</a>
+				<p>
+					<span class="text-warning 32px" ng-bind="createStatus"></span>
+				</p>
+			</div>
+
+			<div class="card-body">
+				<table class="table table-responive small-table">
+					<tr>
+						<td><label for="itemName">Item Name: <span
+								class="text-danger"
+								ng-show="insertItemForm.name.$error.required && insertItemForm.$dirty">
+									Required Field! </span>
+
+						</label> <br> <input id="name" type="text" class="form-control"
+							maxlength="75" name="name" ng-model="newItem.itemName"
+							placeholder="Item name" required> <p><span
+							class="badge badge-secondary">Character Limit:
+								{{newItem.itemName.length + 0}}/75</span></p></td>
+					</tr>
+					<tr>
+						<td><label for="itemCat">Category: <span
+								class="text-danger"
+								ng-show="insertItemForm.cat.$error.required && insertItemForm.$dirty">
+									Required Field! </span>
+						</label><br> <select name="cat" class="form-control"
+							ng-options="value for value in itemCat"
+							ng-model="newItem.itemCat" required>
+						</select></td>
+					</tr>
+					<tr>
+						<td><label for="price">Price $: <span
+								class="text-danger"
+								ng-show="insertItemForm.price.$error.required && insertItemForm.$dirty">
+									Required Field! </span>
+
+						</label><br> <input type="number" class="form-control" name="price"
+							ng-model="newItem.itemPrice" placeholder="Item price"
+							max="999999" min="0"
+							oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+							onKeyDown="if(this.value.length==6 && event.keyCode!=8) return false;"
+							required> <span class="badge badge-secondary">Character
+								Limit: 6</span></td>
+					</tr>
+					<tr>
+						<td><label for="itemDesc">Description: <span
+								class="text-danger"
+								ng-show="insertItemForm.desc.$error.required && insertItemForm.$dirty">
+									Required Field! </span>
+
+						</label><br> <textarea rows="5" name="desc" class="form-control"
+								maxlength="500" ng-model="newItem.itemDesc"
+								placeholder="Item description" required>
+								</textarea>
+							<p>
+								<span class="badge badge-secondary">Character Limit:
+									{{newItem.itemDesc.length + 0}}/500</span>
+							</p></td>
+
+					</tr>
+					<tr>
+						<td><label for="location">Location: <span
+								class="text-danger"
+								ng-show="insertItemForm.location.$error.required && insertItemForm.$dirty">
+									Required Field! </span>
+
+						</label><br> <input type="text" class="form-control" name="location"
+							maxlength="50" id="loc" ng-model="newItem.location"
+							placeholder="Seller location" required>
+							<p>
+								<span class="badge badge-secondary">Character Limit:
+									{{newItem.location.length + 0}}/50</span>
+							</p></td>
+					</tr>
+					<tr>
+						<td><label for="contact">Contact Info: <span
+								class="text-danger"
+								ng-show="insertItemForm.cont.$error.required && insertItemForm.$dirty">
+									Required Field! </span>
+
+
+						</label><br> <textarea class="form-control" maxlength="100" rows="2"
+								id="comment" name="cont" ng-model="newItem.contact"
+								placeholder="Seller contact info" required></textarea>
+							<p>
+								<span class="badge badge-secondary">Character Limit:
+									{{newItem.contact.length + 0}}/100</span>
+							</p></td>
+					</tr>
+
+					<tr>
+						<td><label for="thumbnail">Upload a Thumbnail Image:
+						<span class="text-danger"
+								ng-show="insertItemForm.file.$error.required && insertItemForm.$dirty">
+								Required Field!
+							</span>					
+						</label><br> <input type="file" id="file" ngf-select="" name="file"
+							ng-model="picFile" ngf-accept="'image/*'" required /> <br>
+							<img ngf-src="picFile" class="img-thumbnail">
+					</tr>
+				</table>
+			</div>
+		</div>
+	</form>
+</div>

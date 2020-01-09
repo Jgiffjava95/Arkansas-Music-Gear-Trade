@@ -1,0 +1,165 @@
+<div class="container" ng-show="visible2" ng-init="getItems()">
+	<div class="card">
+		<div class="card-header">
+			<div class="col-12 text-center">
+				<h1>Your Postings</h1>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="row">
+
+				<div class="col-md-3" ng-repeat="item in item | filter : filteritem">
+					<div class="card">
+						<img src="data:image/png;base64,{{item.thumbnail}}"
+							class="card-img-top img-fluid">
+						<div class="card-block">
+							<h4 class="card-title">{{item.itemName}}</h4>
+							<p class="text-success">{{'$' + item.itemPrice}}</p>
+							<p class="card-text">
+								<small class="text-muted">{{item.location}}</small> <br>
+							</p>
+
+						</div>
+						<button type="button" ng-click="editItem(item)"
+							class="btn btn-danger">Edit Item</button>
+					</div>
+					<br>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<form name="viewItemForm">
+	<div class="container">
+		<div class="card" ng-hide="visible2">
+			<div class="card-header">
+				<h4>Edit Post</h4>
+				<button type="button" ng-click="updateImage()"
+					class="btn btn-success" data-toggle="modal"
+					data-target="#updateModal"
+					ng-disabled="!viewItem.$valid>
+					<span class="glyphiconglyphicon-edit">
+					</span>Update Posting
+				</button>
+
+				<button type="button" ng-click="deleteItem(itemToView.itemId)"
+					class="btn btn-danger" data-toggle="modal"
+					data-target="#deleteModal">
+					<span class="glyphicon glyphicon-edit"></span>Delete Posting
+				</button>
+
+				<button type="button" class="btn btn-danger"
+					ng-click="returnToPosts2()">Back</button>
+
+				<div class="modal" id="deleteModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<h4 class="modal-title">Item Deleted</h4>
+							</div>
+
+							<div class="modal-body">Click "Back" to return to your
+								postings.</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger"
+									data-dismiss="modal" ng-click="returnToPosts2()">Back</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<p>
+					<span class="text-warning" ng-bind="updateStatus"></span>
+				</p>
+
+			</div>
+
+			<div class="card-body">
+				<table class="table table-responsive">
+					<tr>
+						<td>Item Name: <span class="text-danger"
+							ng-show="viewItemForm.itemName.$error.required && viewItemForm.$dirty">
+								Required Field! </span> <input name="itemName" type="text"
+							class="form-control" ng-model="itemToView.itemName"
+							maxlength="75" placeholder="Item name" required></input>
+							<p>
+								<span class="badge badge-secondary">Character Limit:
+									{{itemToView.itemName.length + 0}}/75</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>Category: <select type="text" class="form-control"
+							ng-model="itemToView.itemCat"
+							ng-options="value for value in itemCat"></select>
+						</td>
+
+					</tr>
+					<tr>
+						<td>Price $: <span class="text-danger"
+							ng-show="viewItemForm.price.$error.required && viewItemForm.$dirty">
+								Required Field! </span> <input type="number" class="form-control"
+							name="price" ng-model="itemToView.itemPrice"
+							placeholder="Item price"
+							oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');"
+							onKeyDown="if(this.value.length==6 && event.keyCode!=8) return false;"
+							required></input>
+							<p>
+								<span class="badge badge-secondary">Character Limit: 6</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>Description: <span class="text-danger"
+							ng-show="viewItemForm.desc.$error.required && viewItemForm.$dirty">
+								Required Field! </span> <textarea class="form-control" rows="5"
+								id="comment" name="desc" ng-model="itemToView.itemDesc"
+								maxlength="500" placeholder="Item description" required></textarea>
+							<p>
+								<span class="badge badge-secondary">Character Limit:
+									{{itemToView.itemDesc.length + 0}}/500</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>Location: <span class="text-danger"
+							ng-show="viewItemForm.location.$error.required && viewItemForm.$dirty">
+								Required Field! </span> <input type="text" class="form-control"
+							name="location" ng-model="itemToView.location" maxlength="50"
+							placeholder="Seller location" required></input>
+							<p>
+								<span class="badge badge-secondary">Character Limit:
+									{{itemToView.location.length + 0}}/50</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>Contact Info: <span class="text-danger"
+							ng-show="viewItemForm.cont.$error.required && viewItemForm.$dirty">
+								Required Field! </span> <textarea class="form-control" rows="2"
+								id="contact" name="cont" ng-model="itemToView.contact"
+								maxlength="100" placeholder="Seller contact info" required></textarea>
+							<p>
+								<span class="badge badge-secondary">Character Limit:
+									{{itemToView.contact.length + 0}}/100</span>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td><label for="thumbnail">Change thumbnail image: </label><br>
+							<input type="file" id="file" ngf-select="" name="file"
+							ng-model="picFile" ngf-accept="'image/*'" required /> <br>
+							<img ngf-src="picFile" class="img-thumbnail">
+					</tr>
+					<tr>
+						<td><img src="data:image/png;base64,{{itemToView.thumbnail}}"
+							class="img-fluid"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</form>
