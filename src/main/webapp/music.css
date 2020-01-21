@@ -1,3 +1,4 @@
+
 @CHARSET "ISO-8859-1";
 
 .button {
@@ -10,13 +11,7 @@ header {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	font-family: myFirstFont;
 	font-size: 64px;
 	line-height: 100px;
 	text-align: center;
-}
-
-@font-face {
-  font-family: myFirstFont;
-  src: url(sansation_light.woff);
 }

@@ -8,43 +8,49 @@
 
 			<div class="row">
 
-				<div class="col-lg-6 text-center">
-					<label for="filter">Filter by Keyword:</label><input type="text" class="form-control"
-						ng-model="filteritem.itemName" id="filter">
+				<div class="col-lg-4 text-center">
+					<label for="filter">Filter by Keyword:</label><input type="text"
+						class="form-control" ng-model="filteritem.itemName" id="filter">
 				</div>
 
-				<div class="col-lg-6 text-center">
+				<div class="col-lg-4 text-center">
 					<label for="itemCat">Filter by Category:</label><select
-					class="form-control"
-						ng-options="value for value in itemCat"
+						class="form-control" ng-options="value for value in itemCat"
 						ng-model="filteritem.itemCat">
 					</select>
 				</div>
-			</div>
-		</div>
-		<div class="card-body">
-			<div class="row">
 
-				<div class="col-md-3" ng-repeat="item in item | filter : filteritem">
-					<div class="card">
-						<img src="data:image/png;base64,{{item.thumbnail}}"
-								class="card-img-top img-fluid">
-						<div class="card-block">
-							<h4 class="card-title">{{item.itemName}}</h4>
-							<p class="text-success">{{'$' + item.itemPrice}}</p>
-							<p class="card-text">
-								<small class="text-muted">{{item.location}}</small> <br>
-							</p>
-							
-						</div>
-						<button type="button" ng-click="selectItem(item)"
-							class="btn btn-danger">View Item</button>
-					</div>
-					<br>
+				<div class="col-lg-4 text-center">
+					<label for="filterLoc">Filter by Location:</label><input
+						type="text" class="form-control" ng-model="filteritem.location"
+						id="filterLoc">
 				</div>
+			</div>
+
+		</div>
+	<div class="card-body">
+		<div class="row">
+
+			<div class="col-md-3" ng-repeat="item in item | filter : filteritem">
+				<div class="card">
+					<img src="data:image/png;base64,{{item.thumbnail}}"
+						class="card-img-top img-fluid">
+					<div class="card-block">
+						<h4 class="card-title">{{item.itemName}}</h4>
+						<p class="text-success">{{'$' + item.itemPrice}}</p>
+						<p class="card-text">
+							<small class="text-muted">{{item.location}}</small> <br>
+						</p>
+
+					</div>
+					<button type="button" ng-click="selectItem(item)"
+						class="btn btn-danger">View Item</button>
+				</div>
+				<br>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <div class="container">
 	<form name="viewItem">
@@ -77,10 +83,8 @@
 						<td><h3>Contact Info:</h3> <span ng-bind="itemToView.contact"></span></td>
 					</tr>
 					<tr>
-						<td>
-						<img src="data:image/png;base64,{{itemToView.thumbnail}}"
-								class="card-img-top img-fluid">
-						</td>
+						<td><img src="data:image/png;base64,{{itemToView.thumbnail}}"
+							class="img-fluid"></td>
 					</tr>
 				</table>
 			</div>

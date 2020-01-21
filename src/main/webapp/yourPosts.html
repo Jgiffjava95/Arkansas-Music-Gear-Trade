@@ -36,16 +36,14 @@
 			<div class="card-header">
 				<h4>Edit Post</h4>
 				<button type="button" ng-click="updateImage()"
-					class="btn btn-success" data-toggle="modal"
-					data-target="#updateModal"
-					ng-disabled="!viewItem.$valid>
+					class="btn btn-success" ng-disabled="isPutDisabled">
 					<span class="glyphiconglyphicon-edit">
-					</span>Update Posting
+					</span>Save
 				</button>
 
 				<button type="button" ng-click="deleteItem(itemToView.itemId)"
 					class="btn btn-danger" data-toggle="modal"
-					data-target="#deleteModal">
+					data-target="#deleteModal" ng-disabled="isPutDisabled">
 					<span class="glyphicon glyphicon-edit"></span>Delete Posting
 				</button>
 
@@ -94,7 +92,7 @@
 					<tr>
 						<td>Category: <select type="text" class="form-control"
 							ng-model="itemToView.itemCat"
-							ng-options="value for value in itemCat"></select>
+							ng-options="value for value in itemCat2"></select>
 						</td>
 
 					</tr>
@@ -125,19 +123,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Location: <span class="text-danger"
-							ng-show="viewItemForm.location.$error.required && viewItemForm.$dirty">
-								Required Field! </span> <input type="text" class="form-control"
-							name="location" ng-model="itemToView.location" maxlength="50"
-							placeholder="Seller location" required></input>
-							<p>
-								<span class="badge badge-secondary">Character Limit:
-									{{itemToView.location.length + 0}}/50</span>
-							</p>
+						<td>Location: <select type="text" class="form-control" 
+							ng-model="itemToView.location"
+							ng-options="value for value in cities"></select>
+							<p class="text-success">Start typing to filter cities.</p>
 						</td>
 					</tr>
 					<tr>
-						<td>Contact Info: <span class="text-danger"
+						<td>Contact Info: <span class="text-danger" 
 							ng-show="viewItemForm.cont.$error.required && viewItemForm.$dirty">
 								Required Field! </span> <textarea class="form-control" rows="2"
 								id="contact" name="cont" ng-model="itemToView.contact"
@@ -147,13 +140,16 @@
 									{{itemToView.contact.length + 0}}/100</span>
 							</p>
 						</td>
+						
 					</tr>
+					
 					<tr>
 						<td><label for="thumbnail">Change thumbnail image: </label><br>
 							<input type="file" id="file" ngf-select="" name="file"
 							ng-model="picFile" ngf-accept="'image/*'" required /> <br>
-							<img ngf-src="picFile" class="img-thumbnail">
+							<img ngf-src="picFile" class="img-thumbnail" >
 					</tr>
+					
 					<tr>
 						<td><img src="data:image/png;base64,{{itemToView.thumbnail}}"
 							class="img-fluid"></td>

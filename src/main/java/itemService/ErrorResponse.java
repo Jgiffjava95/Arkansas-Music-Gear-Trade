@@ -9,7 +9,7 @@ public class ErrorResponse {
 
 		itemError error = new itemError();
 		error.setId(100);
-		error.setMessage("Description must not excede 500 characters.");
+		error.setMessage("Description must not exceed 500 characters.");
 		Response response = Response.status(400).entity(error).build();
 
 		throw new WebApplicationException(response);
@@ -35,6 +35,16 @@ public class ErrorResponse {
 
 		throw new WebApplicationException(response);
 	}
+	
+	public static void invalidCat() {
+		itemError error = new itemError();
+		error.setId(112);
+		error.setMessage("Invalid item category.");
+		Response response = Response.status(400).entity(error).build();
+
+		throw new WebApplicationException(response);
+		
+	}
 
 	public static void invalidPrice() {
 
@@ -50,7 +60,7 @@ public class ErrorResponse {
 
 		itemError error = new itemError();
 		error.setId(104);
-		error.setMessage("Location must not exceed 50 characters.");
+		error.setMessage("You must select a Location.");
 		Response response = Response.status(400).entity(error).build();
 
 		throw new WebApplicationException(response);
@@ -60,22 +70,72 @@ public class ErrorResponse {
 		
 		itemError error = new itemError();
 		error.setId(105);
-		error.setMessage("Posting must have a thumbnail image.");
+		error.setMessage("Post must have a thumbnail image.");
 		Response response = Response.status(400).entity(error).build();
 
 		throw new WebApplicationException(response);
 		
 	}
 
-
 	public static void invalidUpdate() {
 		itemError error = new itemError();
 		error.setId(106);
-		error.setMessage("Invalid update request.");
+		error.setMessage("Invalid update. Some fields are blank.");
 
 		Response response = Response.status(400).entity(error).build();
 
 		throw new WebApplicationException(response);
 	}
+
+	public static void noConError() {
+		itemError error = new itemError();
+		error.setId(107);
+		error.setMessage("You must have contact information!");
+		Response response = Response.status(400).entity(error).build();
+
+		throw new WebApplicationException(response);
+		
+	}
+
+	public static void noLocError() {
+		itemError error = new itemError();
+		error.setId(108);
+		error.setMessage("You must give a seller location!");
+		Response response = Response.status(400).entity(error).build();
+
+		throw new WebApplicationException(response);
+		
+	}
+
+	public static void noDescError() {
+		itemError error = new itemError();
+		error.setId(109);
+		error.setMessage("You must give an item description!");
+		Response response = Response.status(400).entity(error).build();
+
+		throw new WebApplicationException(response);
+		
+	}
+
+	public static void noPriceError() {
+		itemError error = new itemError();
+		error.setId(110);
+		error.setMessage("You must have a price value!");
+		Response response = Response.status(400).entity(error).build();
+
+		throw new WebApplicationException(response);
+		
+	}
+
+	public static void noNameError() {
+		itemError error = new itemError();
+		error.setId(111);
+		error.setMessage("You must insert an item name!");
+		Response response = Response.status(400).entity(error).build();
+
+		throw new WebApplicationException(response);
+		
+	}
+
 
 }

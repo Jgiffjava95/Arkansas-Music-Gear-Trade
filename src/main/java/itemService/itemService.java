@@ -1,12 +1,9 @@
 package itemService;
 
+import java.util.Arrays;
 import java.util.List;
-
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-
 import mockDao.itemDbDao;
-import mockDao.itemMockDao;
+import model.EmailMessage;
 import model.item;
 
 public class itemService {
@@ -35,14 +32,31 @@ public class itemService {
 
 	public List<item> insert(item newItem) {
 		validateName(newItem.getItemName());
+		validateCat(newItem.getItemCat());
 		validatePrice(newItem.getItemPrice());
 		validateDesc(newItem.getItemDesc());
 		validateLocation(newItem.getLocation());
 		validateContact(newItem.getContact());
-		validateImage(newItem.getThumbnail());
 		List<item> itemToAdd = dao.insert(newItem);
+		SnsPub.publishNewItem(newItem);
 		return itemToAdd;
 	}
+
+	public List<item> updateItem(item updateItem) {
+		validateName(updateItem.getItemName());
+		validateCat(updateItem.getItemCat());
+		validatePrice(updateItem.getItemPrice());
+		validateDesc(updateItem.getItemDesc());
+		validateLocation(updateItem.getLocation());
+		validateContact(updateItem.getContact());
+		List<item> itemToUpdate = dao.updateItem(updateItem);
+		return itemToUpdate;
+	}
+
+	/*
+	 * public List<item> getByCategory(String itemCat) { return
+	 * dao.getByCategory(itemCat); }
+	 */
 
 	private void validateImage(String thumbnail) {
 		if (thumbnail == null) {
@@ -51,34 +65,28 @@ public class itemService {
 		return;
 	}
 
-	public List<item> updateItem(item updateItem) {
-		validateName(updateItem.getItemName());
-		validatePrice(updateItem.getItemPrice());
-		validateDesc(updateItem.getItemDesc());
-		validateLocation(updateItem.getLocation());
-		validateContact(updateItem.getContact());
-		validateImage(updateItem.getThumbnail());
-		List<item> itemToAdd = dao.updateItem(updateItem);
-		return itemToAdd;
+	private void validateCat(String itemCat) {
+		if (Arrays.asList("Guitar", "Bass", "Drums", "Piano", "Keyboard", "Synth", "Microphone", "Classical", "Wind",
+				"Recording", "Software", "Amp/Speaker", "Misc").contains(itemCat)) {
+		} else {
+			ErrorResponse.invalidCat();
+		}
+		return;
 	}
 
-	/*
-	 * public List<item> getByCategory(String itemCat) { return
-	 * dao.getByCategory(itemCat); }
-	 */
 	private void validateContact(String contact) {
 		if (contact.length() > 100) {
 			ErrorResponse.invalidContact();
 		}
 		return;
-	}	
-	
+	}
+
 	private void validateLocation(String location) {
-		if (location.length() > 50) {
+		if (location.length() == 0) {
 			ErrorResponse.invalidLocation();
 		}
 		return;
-	}	
+	}
 
 	private void validateDesc(String itemDesc) {
 		if (itemDesc.length() > 500) {
@@ -100,6 +108,12 @@ public class itemService {
 			ErrorResponse.invalidName();
 		}
 		return;
+	}
+	
+	public String sendEmail(EmailMessage emailMessage) {
+		SnsPub service = new SnsPub();
+		String messageId = service.sendEmail(emailMessage);		
+		return messageId;
 	}
 
 }

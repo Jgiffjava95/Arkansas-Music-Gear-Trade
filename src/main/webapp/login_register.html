@@ -1,1 +1,46 @@
-<p>Login/Register Page</p>
+<div class="container">
+	<form name="loginForm">
+		<div class="card">
+
+			<div class="card-body">
+				<table class="table table-borderless table-responivesmall-table ">
+					<tr>
+						<td><label ng-disabled="true" for="itemName">Username
+								or Email: </label> <br> <input id="userName" type="text"
+							class="form-control" maxlength="" name="userName" ng-model=""
+							placeholder="Username/Email" required></td>
+					</tr>
+
+					<tr>
+						<td><label ng-disabled="true" for="itemName">Password:
+						</label> <br> <input id="password" type="text" class="form-control"
+							maxlength="" name="password" ng-model="" placeholder="Password"
+							required> <a href="">Forgot Username or Password?</a></td>
+					</tr>
+
+					<tr>
+						<td>
+							<button type="button" class="btn btn-success">Login</button>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Not a member? sign up <a href="">Here</a>
+						</td>
+					</tr>
+
+
+
+				</table>
+
+				<div class="alert alert-danger">
+					<strong>THIS IS JUST A DEMO!</strong> Account creation and user
+					pools are still in development. I am currently studying more on
+					Amazon Web Services and plan on implementing Amazon Cognito to
+					maintain my user accounts in the near future!
+				</div>
+
+			</div>
+		</div>
+	</form>
+</div>
