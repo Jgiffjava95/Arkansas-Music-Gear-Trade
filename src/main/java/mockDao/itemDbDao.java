@@ -24,9 +24,6 @@ public class itemDbDao {
 	private final static String selectItemsById = "SELECT itemId, itemName, itemCat, itemPrice, itemDesc, contact, location, postDate, thumbnail "
 			+ " FROM item" + " Where itemId = ?";
 
-	private final static String selectItemsByCat = "SELECT itemId, itemName, itemCat, itemPrice, itemDesc, contact, location, postDate, thumbnail "
-			+ " FROM item" + " Where itemCat = ?";
-
 	private final static String deleteItemsById = " DELETE FROM item " + " Where itemId = ? ";
 
 	private final static String addItems = "INSERT INTO item "
@@ -37,7 +34,7 @@ public class itemDbDao {
 			+ "set itemName = ?, itemCat = ?, itemPrice = ?, itemDesc = ?, contact = ?, location = ?, thumbnail = ? "
 			+ "WHERE itemId = ?;";
 
-	public List<item> getItems() {
+	public List<item> getAllItems() {
 		List<item> items = new ArrayList<item>();
 
 		ResultSet result = null;
@@ -125,7 +122,6 @@ public class itemDbDao {
 	}
 
 	public void deleteItem(item item) {
-		List<item> items = new ArrayList<item>();
 
 		PreparedStatement prepStatement = null;
 

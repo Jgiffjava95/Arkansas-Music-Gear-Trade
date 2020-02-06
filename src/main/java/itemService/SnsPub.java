@@ -20,10 +20,12 @@ import model.item;
 
 public class SnsPub {
 	
-	private static final String ACCESS_KEY = "AKIAW6ZRIHK7XA7OGKO4";
-	private static final String SECRET_KEY = "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";
+	// I have removed this feature for now. My key's were breached. NEVER post the keys on GitHub for others to see.
+	
+	private static final String ACCESS_KEY = "";
+	private static final String SECRET_KEY = "";
 
-	private static final String myTopic = "arn:aws:sns:us-east-1:478455282367:AMGT-Email-Notification";
+	private static final String myTopic = "";
 
 	private static AmazonSNSClient getAwsClient() {
 

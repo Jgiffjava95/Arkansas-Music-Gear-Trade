@@ -19,57 +19,43 @@ import model.Message;
 
 @Path("/item")
 public class ItemController {
-	
+
 	private itemService service = new itemService();
-	
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<item> getAllItems() {
 		return service.getAllItems();
 	}
-/*	
-	@GET
-	@Path("/getById/{value}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<item> getById(@PathParam("value") int itemId) {
-		return service.getById(itemId);
-	}
-	
-	@GET
-	@Path("/getByCategory/{value}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<item> getByCategory(@PathParam("value") String itemCat) {
-		return service.getByCategory(itemCat);
-	}
-*/	
+
 	@DELETE
 	@Path("/removeItem/{value}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<item> deleteItem(@PathParam("value") int itemId) {
 		System.out.println("Item Deleted: " + itemId);
-		return service.deleteItem(itemId);		
+		return service.deleteItem(itemId);
 	}
 
 	@POST
-	@Produces(MediaType.APPLICATION_JSON) 
-	public List<item> insert(item newItem) { 
-		return service.insert(newItem);		
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<item> insert(item newItem) {
+		return service.insert(newItem);
 	}
-	
-	@POST	
+
+	@POST
 	@Path("/email")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
-	public Response sendEmail(EmailMessage emailMessage) {		
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response sendEmail(EmailMessage emailMessage) {
 		itemService service = new itemService();
 		String result = service.sendEmail(emailMessage);
-		
+
 		Message message = new Message();
 		message.setMessage(result);
-		
+
 		return Response.status(200).entity(message).build();
 	}
-	
+
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<item> update(item updateItem) {

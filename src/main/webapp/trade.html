@@ -5,25 +5,24 @@
 			<div class="col-12 text-center">
 				<h1>Current Postings</h1>
 			</div>
-
+			<button type="button" class="btn btn-success" ng-click="resetFilters()">Reset Filters</button>
 			<div class="row">
 
 				<div class="col-lg-4 text-center">
-					<label for="filter">Filter by Keyword:</label><input type="text"
-						class="form-control" ng-model="filteritem.itemName" id="filter">
+					<label for="searchByName">Filter by Keyword:</label><input type="text" id="searchByName"
+						class="form-control" ng-model="filteritem.itemName">
 				</div>
 
 				<div class="col-lg-4 text-center">
-					<label for="itemCat">Filter by Category:</label><select
-						class="form-control" ng-options="value for value in itemCat"
+					<label for="searchByCat">Filter by Category:</label><select
+						class="form-control" id="searchByCat" ng-options="value for value in itemCat"
 						ng-model="filteritem.itemCat">
 					</select>
 				</div>
 
 				<div class="col-lg-4 text-center">
-					<label for="filterLoc">Filter by Location:</label><input
-						type="text" class="form-control" ng-model="filteritem.location"
-						id="filterLoc">
+					<label for="searchByLocation">Filter by Location:</label><input
+						type="text" id="searchByLocation" class="form-control" ng-model="filteritem.location">
 				</div>
 			</div>
 
@@ -31,7 +30,7 @@
 	<div class="card-body">
 		<div class="row">
 
-			<div class="col-md-3" ng-repeat="item in item | filter : filteritem">
+			<div class="col-md-3" ng-repeat="item in items | filter : filteritem">
 				<div class="card">
 					<img src="data:image/png;base64,{{item.thumbnail}}"
 						class="card-img-top img-fluid">

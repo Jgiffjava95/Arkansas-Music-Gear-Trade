@@ -33,7 +33,7 @@
 								ng-show="insertItemForm.cat.$error.required && insertItemForm.$dirty">
 									Required Field! </span>
 						</label><br> <select name="cat" class="form-control"
-							ng-options="value for value in itemCat2"
+							ng-options="value for value in itemCat"
 							ng-model="newItem.itemCat" required>
 						</select></td>
 					</tr>
@@ -67,7 +67,7 @@
 
 					</tr>
 					
-					
+			
 					<tr>
 						<td><label for="location">Location: <span
 								class="text-danger"
@@ -78,7 +78,6 @@
 							ng-options="value for value in cities"
 							ng-model="newItem.location" required>
 						</select>
-						<p class="text-success">Start typing to filter cities.</p>
 						</td>
 
 					</tr>

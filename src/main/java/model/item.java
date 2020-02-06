@@ -111,40 +111,5 @@ public class item {
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
-
-	public boolean hasName() {
-		if (this.getItemName() != null) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hasPrice() {
-		if (this.getItemPrice() != 0) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hasImg() {
-		if (this.getThumbnail() != null) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hasContact() {
-		if (this.getContact() != null) {
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hasDesc() {
-		if (this.getItemDesc() != null) {
-			return true;
-		}
-		return false;
-	}
 	
 }
